@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JDP - Joki Dana Pelajar Gaming</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1f1c2c, #928dab);
+      color: #fff;
+    }
+    header {
+      padding: 25px;
+      text-align: center;
+      background: linear-gradient(to right, #4b6cb7, #182848);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 30px;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-size: 14px;
+      color: #ddd;
+    }
+    .container {
+      padding: 20px;
+    }
+    .price-table {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    }
+    .price-table h2 {
+      font-size: 22px;
+      color: #ffd700;
+      margin-top: 0;
+    }
+    .form-group {
+      margin: 10px 0;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    select, input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    #total {
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: 10px;
+    }
+    .btn-buy {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      background-color: #25d366;
+      color: white;
+      text-align: center;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    .btn-buy:hover {
+      background-color: #1ebc57;
+    }
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #111;
+      font-size: 14px;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>JDP - Joki Dana Pelajar Gaming</h1>
+    <p>Toko aman, terpercaya &amp; profesional bantu push rank kamu!</p>
+  </header>
+
+  <div class="container">
+    <div class="price-table">
+      <h2>Pesan Joki Sekarang</h2>
+      <div class="form-group">
+        <label for="rank">Pilih Rank:</label>
+        <select id="rank">
+          <option value="Master" data-price="1000">Master - Rp 1000 / bintang</option>
+          <option value="Grandmaster" data-price="2000">Grandmaster - Rp 2000 / bintang</option>
+          <option value="Epic" data-price="4000">Epic - Rp 4000 / bintang</option>
+          <option value="Legend" data-price="5000">Legend - Rp 5000 / bintang</option>
+          <option value="Mythic" data-price="5000">Mythic - Rp 5000 / bintang</option>
+          <option value="Honor" data-price="5000">Honor - Rp 5000 / bintang</option>
+          <option value="Glory" data-price="5000">Glory - Rp 5000 / bintang</option>
+          <option value="Immortal" data-price="6000">Immortal - Rp 6000 / bintang</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="jumlah">Jumlah Bintang:</label>
+        <input type="number" id="jumlah" placeholder="Masukkan jumlah bintang" min="1">
+      </div>
+
+      <div id="total">Total: Rp 0</div>
+
+      <a id="linkWA" class="btn-buy" href="#" target="_blank">Pesan ke Admin</a>
+      <a id="linkPartner" class="btn-buy" href="#" target="_blank">Pesan ke Partner</a>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 JDP - Joki Dana Pelajar Gaming<br>
+    Aman - Cepat - Murah - Terpercaya
+  </footer>
+
+  <script>
+    const rankSelect = document.getElementById('rank');
+    const jumlahInput = document.getElementById('jumlah');
+    const totalDisplay = document.getElementById('total');
+    const linkWA = document.getElementById('linkWA');
+    const linkPartner = document.getElementById('linkPartner');
+
+    function updateTotal() {
+      const hargaPerBintang = parseInt(rankSelect.selectedOptions[0].dataset.price);
+      const rank = rankSelect.value;
+      const jumlah = parseInt(jumlahInput.value) || 0;
+      const total = hargaPerBintang * jumlah;
+
+      totalDisplay.textContent = "Total: Rp " + total.toLocaleString();
+
+      const pesan = `Halo kak, saya mau joki Dcoder\nRank: ${rank}\nJumlah Bintang: ${jumlah}\nTotal: Rp ${total.toLocaleString()}`;
+      const urlAdmin = "https://wa.me/6283811177076?text=" + encodeURIComponent(pesan);
+      const urlPartner = "https://wa.me/6281399718485?text=" + encodeURIComponent(pesan);
+
+      linkWA.href = urlAdmin;
+      linkPartner.href = urlPartner;
+    }
+
+    rankSelect.addEventListener('change', updateTotal);
+    jumlahInput.addEventListener('input', updateTotal);
+  </script>
+
+</body></html>
